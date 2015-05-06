@@ -74,7 +74,7 @@ object Correlations {
 
     // Calculate label -- feature correlations
     val labelRDD = examples.map(_.label)
-    val numFeatures = examples.take(1)(0).features.size
+    val numFeatures = examples.take(100)(0).features.size
     val corrType = "pearson"
     println()
     println(s"Correlation ($corrType) between label and each feature")

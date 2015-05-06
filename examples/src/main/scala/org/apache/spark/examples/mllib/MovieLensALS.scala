@@ -20,7 +20,7 @@ package org.apache.spark.examples.mllib
 import scala.collection.mutable
 
 import org.apache.log4j.{Level, Logger}
-import scopt.OptionParser
+import scopt.{OptionParser, AbstractParams}
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.SparkContext._
@@ -169,7 +169,7 @@ object MovieLensALS {
 
     val rmse = computeRmse(model, test, params.implicitPrefs)
 
-    println(s"Test RMSE = $rmse.")
+    println(s"est RMSE = $rmse.")
 
     sc.stop()
   }
@@ -184,6 +184,7 @@ object MovieLensALS {
     val predictionsAndRatings = predictions.map{ x =>
       ((x.user, x.product), mapPredictedRating(x.rating))
     }.join(data.map(x => ((x.user, x.product), x.rating))).values
+    println(s"predictions= $predictionsAndRatings")
     math.sqrt(predictionsAndRatings.map(x => (x._1 - x._2) * (x._1 - x._2)).mean())
   }
 }
