@@ -111,6 +111,7 @@ if [ -z "$JAVA_HOME" ]; then
   exit -1
 fi
 
+
 if [ $(command -v git) ]; then
     GITREV=$(git rev-parse --short HEAD 2>/dev/null || :)
     if [ ! -z "$GITREV" ]; then
@@ -155,6 +156,8 @@ if [[ ! "$JAVA_VERSION" =~ "1.6" && -z "$SKIP_JAVA_TEST" ]]; then
     exit 1
   fi
 fi
+
+echo here
 
 if [ "$NAME" == "none" ]; then
   NAME=$SPARK_HADOOP_VERSION
